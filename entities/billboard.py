@@ -8,7 +8,7 @@ class Billboard(Entity):
         An object which always faces towards the camera
     """
     __slots__ = ("visible",)
-    entity_type = ENTITY_TYPE["MEDKIT"]
+    entity_type = ENTITY_TYPE["PROMPT"]
 
     def __init__(self, position: list[float]):
         """

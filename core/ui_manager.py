@@ -43,6 +43,6 @@ class UIManager:
         
         # Add interaction prompt if active
         if "interaction_prompt" in self.active_elements:
-            renderables[ENTITY_TYPE["MEDKIT"]] = [self.interaction_prompt]
+            renderables[ENTITY_TYPE["PROMPT"]] = [self.interaction_prompt]
         
         return renderables 

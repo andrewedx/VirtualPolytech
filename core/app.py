@@ -106,7 +106,7 @@ class App:
                 if key == GLFW_CONSTANTS.GLFW_KEY_R:
                     self.renderer.reload_shaders()
 
-                if key == GLFW_CONSTANTS.GLFW_KEY_O:
+                if key == GLFW_CONSTANTS.GLFW_KEY_F:
                     # Toggle any active doors
                     for door in self.scene.entities.get(ENTITY_TYPE["DOOR"], []):
                         if door.is_active:

@@ -16,7 +16,7 @@ MAX_LIGHTS = 5
 ENTITY_TYPE = {
     "CUBE": 0,
     "POINTLIGHT": 1,
-    "MEDKIT": 2,
+    "BILLBOARD": 2,
     "DOOR": 3,
     "PROMPT": 4,
 }

@@ -42,12 +42,13 @@ class GraphicsEngine:
         self.skybox_mesh = SkyboxMesh()
         self.skybox_shader = Shader("shaders/skybox_vertex.txt", "shaders/skybox_fragment.txt")
         self.skybox = Skybox([
-            "gfx/texture.png",
-            "gfx/texture.png",
-            "gfx/texture.png",
-            "gfx/texture.png",
-            "gfx/texture.png",
-            "gfx/texture.png"
+            "gfx/sky.jpg",
+            "gfx/sky.jpg",
+            "gfx/sky.jpg",
+            "gfx/sky.jpg",
+            "gfx/sky.jpg",
+            "gfx/sky.jpg",
+ 
         ])
     
     def _set_up_opengl(self) -> None:
@@ -73,9 +74,9 @@ class GraphicsEngine:
 
         self.meshes: dict[int, Mesh] = {
             # ENTITY_TYPE["CUBE"]: monkey_model,
-            ENTITY_TYPE["MEDKIT"]: RectMesh(w = 0.6, h = 0.5),
+            ENTITY_TYPE["PROMPT"]: RectMesh(w = 0.6, h = 0.5),
             ENTITY_TYPE["POINTLIGHT"]: RectMesh(w = 0.2, h = 0.1),
-            ENTITY_TYPE["CUBE"] : MultiMaterialMesh("models/joint.obj"),
+            ENTITY_TYPE["CUBE"] : MultiMaterialMesh("models/assembler.obj"),
             ENTITY_TYPE["DOOR"]: MultiMaterialMesh("models/door.obj")
             
         }
@@ -83,9 +84,9 @@ class GraphicsEngine:
 
         self.materials: dict[int, Material] = {
             # ENTITY_TYPE["CUBE"]: Material(monkey_model.texture_path),
-            ENTITY_TYPE["MEDKIT"]: Material("gfx/medkit.png"),
+            ENTITY_TYPE["BILLBOARD"]: Material("gfx/prompt.png"),
             ENTITY_TYPE["POINTLIGHT"]: Material("gfx/Light-bulb.png"),
-            ENTITY_TYPE["PROMPT"]: Material("gfx/medkit.png")  # Still using medkit texture temporarily
+            ENTITY_TYPE["PROMPT"]: Material("gfx/prompt.png")  
         }
         
         self.shaders: dict[int, Shader] = {
@@ -319,7 +320,7 @@ class GraphicsEngine:
             )
 
             for entity_type, entities in all_renderables.items():
-                if entity_type == ENTITY_TYPE["MEDKIT"]:  # Skip UI elements for shadow pass
+                if entity_type == ENTITY_TYPE["PROMPT"]:  # Skip UI elements for shadow pass
                     continue
                 mesh = self.meshes[entity_type]
                 if isinstance(mesh, MultiMaterialMesh):
@@ -377,7 +378,7 @@ class GraphicsEngine:
 
         # Render non-UI elements with standard shader
         for entity_type, entities in all_renderables.items():
-            if entity_type == ENTITY_TYPE["MEDKIT"]:  # Skip UI elements for now
+            if entity_type == ENTITY_TYPE["PROMPT"]:  # Skip UI elements for now
                 continue
                 
             mesh = self.meshes[entity_type]
@@ -450,7 +451,7 @@ class GraphicsEngine:
         glDepthFunc(GL_LESS)
 
         # Now render UI elements with emissive shader (as the very last step)
-        if ENTITY_TYPE["MEDKIT"] in all_renderables:
+        if ENTITY_TYPE["PROMPT"] in all_renderables:
             emissive_shader = self.shaders[PIPELINE_TYPE["EMISSIVE"]]
             emissive_shader.use()
             glUniformMatrix4fv(
@@ -458,8 +459,8 @@ class GraphicsEngine:
                 1, GL_FALSE, view
             )
 
-            prompt_material = self.materials[ENTITY_TYPE["MEDKIT"]]
-            prompt_mesh = self.meshes[ENTITY_TYPE["MEDKIT"]]
+            prompt_material = self.materials[ENTITY_TYPE["PROMPT"]]
+            prompt_mesh = self.meshes[ENTITY_TYPE["PROMPT"]]
 
             prompt_material.use()
             prompt_mesh.arm_for_drawing()
@@ -468,7 +469,7 @@ class GraphicsEngine:
             glDisable(GL_DEPTH_TEST)
 
             # Render all UI elements
-            for entity in all_renderables[ENTITY_TYPE["MEDKIT"]]:
+            for entity in all_renderables[ENTITY_TYPE["PROMPT"]]:
                 # Make UI elements glow white
                 glUniform3fv(
                     emissive_shader.fetch_single_location(UNIFORM_TYPE["TINT"]), 

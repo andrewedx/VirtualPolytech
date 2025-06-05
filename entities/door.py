@@ -29,13 +29,13 @@ class Door(Entity):
         # Check if player is close enough to interact
         dist = np.linalg.norm(camera_pos - self.position)
         was_active = self.is_active
-        self.is_active = dist < 1.0
+        self.is_active = dist < 3.0
 
         # Update door animation
         direction = self.direction if self.is_open else -self.direction
         target_angle = self.base_angle + (self.angle_limit * self.direction) if self.is_open else self.base_angle
         angle_diff = target_angle - self.eulers[1]
-        if abs(angle_diff) > 2.5:
+        if abs(angle_diff) > 0.01:
             self.eulers[1] += direction * self.speed * dt
             self.eulers[1] = np.clip(
                 self.eulers[1], 

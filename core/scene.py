@@ -113,9 +113,6 @@ class Scene:
                 Cube(position = [0,0,0], eulers = [90,0,-90]),
             ],
             ENTITY_TYPE["DOOR"]: [
-                Door(position = [2,0,0], eulers = [90,0,0], pivot_offset=[-2,0, 0.5]),
-                Door(position = [4,0,0], eulers = [90,0,0], pivot_offset=[-4,0, 0.5]),
-                # Door(position = [10,10, 10], eulers = [90,90,0], pivot_offset=[-10,-10, -9.5]),
                 Door(position = door_to_open["pos"], eulers = door_to_open["eulers"], direction = -1),
             ]
 
@@ -200,10 +197,17 @@ class Scene:
                 color = [1.0, 1.0, 1.0],
                 strength = 8.0),
 
+            ## A103
+            PointLight(
+                position = [13.5, 34,6],
+                color = [1.0, 1.0, 1.0],
+                strength = 8.0)
+
+
         ]
 
         self.player = Camera(
-            position = [29, 26,6]
+            position = [-26.1, 30.15 , 1.5]
         )
 
     def update(self, dt: float) -> None:
@@ -216,6 +220,9 @@ class Scene:
         # Update player first to get latest view matrix
         self.player.update(dt)
         view_matrix = self.player.get_view_transform()
+        
+        # Print camera position
+        print(f"Camera position: {self.player.position}")
 
         # Check if any doors are active to show/hide prompt
         any_door_active = False
