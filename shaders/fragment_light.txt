@@ -1,0 +1,21 @@
+#version 330 core
+
+in vec2 fragmentTexCoord;
+
+uniform sampler2D imageTexture;
+uniform vec3 tint;
+uniform bool useTexture;
+
+out vec4 color;
+
+void main()
+{
+    vec4 base = useTexture 
+        ? texture(imageTexture, fragmentTexCoord)
+        : vec4(1.0);  // fallback for color-only
+
+    if (base.a < 0.1)
+        discard;
+
+    color = vec4(tint, 1.0) * base;
+}

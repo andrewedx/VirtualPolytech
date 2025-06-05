@@ -1,0 +1,64 @@
+#version 330 core
+
+struct PointLight {
+    vec3 position;
+    vec3 color;
+    float strength;
+};
+
+in vec2 fragmentTexCoord;
+in vec3 fragmentPosition;
+in vec3 fragmentNormal;
+
+uniform sampler2D imageTexture;
+uniform PointLight Lights[64];
+uniform vec3 cameraPosition;
+uniform bool useTexture;
+uniform vec3 tint;
+
+out vec4 color;
+
+vec3 calculatePointLight(PointLight light, vec3 fragPosition, vec3 fragNormal, vec3 baseColor);
+
+void main()
+{
+    vec3 baseColor = useTexture 
+        ? texture(imageTexture, fragmentTexCoord).rgb 
+        : tint;
+
+    vec3 temp = 0.2 * baseColor;
+
+    for (int i = 0; i < 64; i++) {
+        temp += calculatePointLight(Lights[i], fragmentPosition, fragmentNormal, baseColor);
+    }
+
+    float alpha = useTexture 
+    ? texture(imageTexture, fragmentTexCoord).a 
+    : 1.0;
+
+    color = vec4(temp, alpha);
+}
+
+vec3 calculatePointLight(PointLight light, vec3 fragPosition, vec3 fragNormal, vec3 baseColor)
+{
+    vec3 result = vec3(0);
+
+    // geometric data
+    vec3 fragLight = light.position - fragPosition;
+    float distance = length(fragLight);
+    fragLight = normalize(fragLight);
+    vec3 fragCamera = normalize(cameraPosition - fragPosition);
+    vec3 halfVec = normalize(fragLight + fragCamera);
+
+    // diffuse
+    result += light.color * light.strength 
+            * max(0.0, dot(fragNormal, fragLight)) 
+            / (distance * distance) * baseColor;
+
+    // specular
+    result += light.color * light.strength 
+            * pow(max(0.0, dot(fragNormal, halfVec)), 32.0) 
+            / (distance * distance);
+
+    return result;
+}

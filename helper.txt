@@ -1,0 +1,12 @@
+| Use Case                               | File(s) to Look Into                                             |
+| -------------------------------------- | ---------------------------------------------------------------- |
+| Add a new object type (e.g. spaceship) | `entities/`, `core/scene.py`, `core/constants.py`                |
+| Make an object react to the player     | `entities/`, `core/scene.py`                                     |
+| Add a new shader (e.g. glowing effect) | `graphics/shader.py`, `graphics/engine.py`, `shaders/`           |
+| Change input behavior                  | `core/app.py`                                                    |
+| Change how an object is rendered       | `graphics/engine.py`, `graphics/material.py`, `graphics/mesh.py` |
+| Add UI overlays (e.g. health bar)      | `graphics/engine.py` or separate 2D rendering layer              |
+| Add new light effects                  | `entities/pointlight.py`, `graphics/engine.py`                   |
+| Change screen resolution               | `core/constants.py`                                              |
+| Improve .obj support                   | `utils/obj_loader.py`                                            |
+| Move camera differently                | `core/scene.py` (Camera class)                                   |
