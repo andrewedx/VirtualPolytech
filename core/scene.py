@@ -222,7 +222,7 @@ class Scene:
         view_matrix = self.player.get_view_transform()
         
         # Print camera position
-        print(f"Camera position: {self.player.position}")
+        # print(f"Camera position: {self.player.position}")
 
         # Check if any doors are active to show/hide prompt
         any_door_active = False
