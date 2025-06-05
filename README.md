@@ -2,6 +2,8 @@
 
 A 3D graphics application built with Python and OpenGL, featuring a first-person camera system, dynamic lighting, and interactive elements.
 
+Aimed to show a 3D model of Polytech Paris Saclay.
+
 ## Features
 
 - First-person camera navigation
@@ -37,6 +39,9 @@ pip install numpy pyopengl glfw pyrr
 
 - **W/A/S/D** - Move forward/left/backward/right
 - **Q/E** - Move up/down
+- **F** - Open/Close door
+- **R** - Relaod Shader
+- **L** - Toggle Shadows
 - **Mouse** - Look around
 - **ESC** - Exit application
 
@@ -131,7 +136,6 @@ PointLight(
 ## Performance Considerations
 
 - Light sources are limited and sorted by distance to camera
-- Frustum culling for efficient rendering
 - Optimized shader uniforms caching
 - Efficient vertex buffer management
 
@@ -143,6 +147,3 @@ PointLight(
 4. Push to the branch
 5. Create a Pull Request
 
-## License
-
-[Your License Here] 
