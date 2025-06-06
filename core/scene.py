@@ -109,6 +109,9 @@ class Scene:
 
 
         self.entities: dict[int, list[Entity]] = {
+            ENTITY_TYPE["BILLBOARD"]: [
+                Billboard(position = [-22, 30, 1.5])
+            ],
             ENTITY_TYPE["CUBE"]: [
                 Cube(position = [0,0,0], eulers = [90,0,-90]),
             ],
@@ -137,27 +140,27 @@ class Scene:
                 color = [1.0, 1.0, 1.0],
                 strength = 8.0),
             PointLight(
-                position = [-10,30,10],
+                position = [-10,30,8],
                 color = [1.0, 1.0, 1.0],
                 strength = 8.0),
             PointLight(
-                position = [-10,27,10],
+                position = [-10,27,8],
                 color = [1.0, 1.0, 1.0],
                 strength = 8.0),
             PointLight(
-                position = [-10,33,10],
+                position = [-10,33,8],
                 color = [1.0, 1.0, 1.0],
                 strength = 8.0),
             PointLight(
-                position = [-14,30,10],
+                position = [-14,30,8],
                 color = [1.0, 1.0, 1.0],
                 strength = 8.0),
             PointLight(
-                position = [-14,27,10],
+                position = [-14,27,8],
                 color = [1.0, 1.0, 1.0],
                 strength = 8.0),
             PointLight(
-                position = [-14,33,10],
+                position = [-14,33,8],
                 color = [1.0, 1.0, 1.0],
                 strength = 8.0),
 

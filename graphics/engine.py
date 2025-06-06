@@ -77,14 +77,14 @@ class GraphicsEngine:
             ENTITY_TYPE["PROMPT"]: RectMesh(w = 0.6, h = 0.5),
             ENTITY_TYPE["POINTLIGHT"]: RectMesh(w = 0.2, h = 0.1),
             ENTITY_TYPE["CUBE"] : MultiMaterialMesh("models/assembler.obj"),
-            ENTITY_TYPE["DOOR"]: MultiMaterialMesh("models/door.obj")
-            
+            ENTITY_TYPE["DOOR"]: MultiMaterialMesh("models/door.obj"),
+            ENTITY_TYPE["BILLBOARD"]: RectMesh(w = 1.0, h = 1.0)
         }
 
 
         self.materials: dict[int, Material] = {
             # ENTITY_TYPE["CUBE"]: Material(monkey_model.texture_path),
-            ENTITY_TYPE["BILLBOARD"]: Material("gfx/prompt.png"),
+            ENTITY_TYPE["BILLBOARD"]: Material("gfx/welcome.png"),
             ENTITY_TYPE["POINTLIGHT"]: Material("gfx/Light-bulb.png"),
             ENTITY_TYPE["PROMPT"]: Material("gfx/prompt.png")  
         }

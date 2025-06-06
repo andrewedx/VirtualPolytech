@@ -70,6 +70,7 @@ class App:
         self.current_time = 0
         self.frames_rendered = 0
         self.frametime = 0.0
+
     
     def _set_up_input_systems(self) -> None:
         """
@@ -175,7 +176,12 @@ class App:
             Takes action based on the keys currently pressed.
         """
 
-        rate = 0.005*self.frametime
+        # Base movement rate, increased when sprinting
+        base_rate = 0.005
+        if self._keys.get(GLFW_CONSTANTS.GLFW_KEY_LEFT_SHIFT, False):
+            base_rate *= 2.5  # Sprint multiplier
+
+        rate = base_rate * self.frametime
         d_pos = np.zeros(3, dtype=np.float32)
 
         if self._keys.get(GLFW_CONSTANTS.GLFW_KEY_W, False):

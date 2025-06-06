@@ -38,11 +38,13 @@ pip install numpy pyopengl glfw pyrr
 ## Controls
 
 - **W/A/S/D** - Move forward/left/backward/right
+- **SHIFT** - move faster
 - **Q/E** - Move up/down
 - **F** - Open/Close door
 - **R** - Relaod Shader
 - **L** - Toggle Shadows
 - **Mouse** - Look around
+- **TAB** - Toggle mouse capture
 - **ESC** - Exit application
 
 ## Project Structure
