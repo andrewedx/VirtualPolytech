@@ -1,7 +1,5 @@
 *.blend
 *.blend1
-*.obj
-*.mtl
 __pycache__/
 *.pyc
 *.py[cod]

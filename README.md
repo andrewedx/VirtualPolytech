@@ -92,8 +92,6 @@ pip install numpy pyopengl glfw pyrr
 ### Camera System
 - First-person perspective
 - Smooth movement and rotation
-- Collision detection (optional)
-- View frustum calculations
 
 ### Interactive Elements
 - Door system with proximity detection
