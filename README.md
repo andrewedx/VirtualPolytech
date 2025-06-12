@@ -17,10 +17,7 @@ Aimed to show a 3D model of Polytech Paris Saclay.
 ## Prerequisites
 
 - Python 3.x
-- GLFW
-- PyOpenGL
-- NumPy
-- Pyrr (for matrix and vector operations)
+- OpenGL 3.3+ compatible graphics card and drivers
 
 ## Installation
 
@@ -30,9 +27,14 @@ git clone <repository-url>
 cd <project-directory>
 ```
 
-2. Install the required dependencies:
+2. Install the required dependencies using pip and the requirements.txt file:
 ```bash
-pip install numpy pyopengl glfw pyrr
+pip install -r requirements.txt
+```
+
+Alternatively, you can install dependencies manually:
+```bash
+pip install numpy pyopengl glfw pyrr pillow
 ```
 
 ## Controls
